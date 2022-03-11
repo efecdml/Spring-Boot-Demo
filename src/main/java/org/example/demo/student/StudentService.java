@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -16,5 +17,15 @@ public class StudentService {
 
     public List<StudentModel> getStudents() {
         return studentRepository.findAll();
+    }
+
+    public void addNewStudent(StudentModel studentModel) {
+        Optional<StudentModel> studentModelOptional = studentRepository.findStudentByEmail(studentModel.getEmail());
+
+        if (studentModelOptional.isPresent()) {
+            throw new IllegalStateException("email taken");
+        }
+        System.out.println(studentModel);
+        studentRepository.save(studentModel);
     }
 }

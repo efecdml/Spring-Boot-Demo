@@ -15,13 +15,13 @@ public class StudentConfig {
         return args -> {
             StudentModel olga = new StudentModel("Olga",
                     "olga@mail.com",
-                    LocalDate.of(2001, Month.APRIL, 11),
-                    21);
+                    LocalDate.of(2001, Month.APRIL, 11)
+            );
 
             StudentModel igor = new StudentModel("Igor",
                     "igor@mail.com",
-                    LocalDate.of(2002, Month.SEPTEMBER, 12),
-                    21);
+                    LocalDate.of(2002, Month.SEPTEMBER, 12)
+            );
 
             studentRepository.saveAll(List.of(olga, igor));
         };

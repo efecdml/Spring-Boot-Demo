@@ -2,6 +2,7 @@ package org.example.demo.student;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table
@@ -19,33 +20,30 @@ public class StudentModel {
     )
     private Long id;
     private String name;
-    private String epost;
+    private String email;
     private LocalDate dateOfBirth;
+    @Transient
     private int age;
 
     public StudentModel() {
     }
 
     public StudentModel(String name,
-                        String epost,
-                        LocalDate dateOfBirth,
-                        int age) {
+                        String email,
+                        LocalDate dateOfBirth) {
         this.name = name;
-        this.epost = epost;
+        this.email = email;
         this.dateOfBirth = dateOfBirth;
-        this.age = age;
     }
 
     public StudentModel(Long id,
                         String name,
-                        String epost,
-                        LocalDate dateOfBirth,
-                        int age) {
+                        String email,
+                        LocalDate dateOfBirth) {
         this.id = id;
         this.name = name;
-        this.epost = epost;
+        this.email = email;
         this.dateOfBirth = dateOfBirth;
-        this.age = age;
     }
 
     public Long getId() {
@@ -64,12 +62,12 @@ public class StudentModel {
         this.name = name;
     }
 
-    public String getEpost() {
-        return epost;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEpost(String epost) {
-        this.epost = epost;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public LocalDate getDateOfBirth() {
@@ -81,7 +79,7 @@ public class StudentModel {
     }
 
     public int getAge() {
-        return age;
+        return Period.between(this.dateOfBirth, LocalDate.now()).getYears();
     }
 
     public void setAge(int age) {
@@ -93,7 +91,7 @@ public class StudentModel {
         return "StudentModel{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", epost='" + epost + '\'' +
+                ", email='" + email + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 ", age=" + age +
                 '}';
